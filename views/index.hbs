@@ -1,0 +1,40 @@
+{{#properties}}
+    "page_title": "Change tracker"
+{{/properties}}
+
+<div id="search">
+  <a href="/logout">Logout</a>
+</div>
+<div class="wrapper">
+  <h2>I have</h2>
+  <h1 class="balance">${{ balance }}</h1>
+  <div class="breakdown">
+    Made up of {{#coins}}<big>{{value}}</big> {{key}}{{lastStr}}{{/coins}}.
+  </div>
+  <h3><a href="#">Make a deposit</a></h3>
+  <ul style="display: none;">
+    <form method="post" action="/deposit">
+      <li><label for="f005">5c</label><input type="text" name="0.05"> coins</li>
+      <li><label for="f010">10c</label><input type="text" name="0.1"> coins</li>
+      <li><label for="f020">20c</label><input type="text" name="0.2"> coins</li>
+      <li><label for="f050">50c</label><input type="text" name="0.5"> coins</li>
+      <li><label for="f100">$1</label><input type="text" name="1"> coins</li>
+      <li><label for="f200">$2</label><input type="text" name="2"> coins</li>
+      <li><label for="submit"></label><input type="submit" value="Deposit"/></li>
+    </form>
+  </ul>  
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('h3 a').click(function(e){
+    if(!$(this).hasClass("expanded")) {
+      $(this).addClass('expanded');
+      $(this).parent().next('ul').show();
+    } else {
+      $(this).removeClass('expanded').parent().next('ul').hide();
+    }
+    e.preventDefault();
+  });
+});
+</script>

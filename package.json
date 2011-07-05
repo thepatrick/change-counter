@@ -1,0 +1,9 @@
+{
+    "name": "change-tracker",
+    "version": "0.0.1",
+    "dependencies": {
+      "express": "2.3.12",
+      "hbs": "0.0.7",
+      "msgpack": "0.1.3"
+  }
+}
