@@ -1,6 +1,6 @@
 /*global escape Buffer*/
 
-var msgpack = require('msgpack'),
+var msgpack = require('msgpack-0.4'),
     crypto  = require('crypto'),
     http    = require('http'),
     util    = require('util');
