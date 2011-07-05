@@ -4,7 +4,7 @@
     "dependencies": {
       "express": "2.3.12",
       "hbs": ">=0.0.7",
-      'cradle': ">=0.5.5"
+      'cradle': ">=0.5.5",
       "msgpack-0.4": ">=0.0.1"
   }
 }
