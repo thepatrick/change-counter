@@ -75,5 +75,5 @@ app.get('/logout', helpers.requireLogin(auth, options), actions.logout());
 app.get('/', helpers.requireLogin(auth, options), actions.index(options, money));
 app.post('/deposit', helpers.requireLogin(auth, options), actions.deposit(money));
 
-app.listen(3000);
+app.listen(process.env.APP_PORT);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
