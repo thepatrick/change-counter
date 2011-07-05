@@ -28,29 +28,28 @@ module.exports.index = function(options, money) {
     var opts = helpers.copyOpts(options);
 
     money.moneyTotal(function(balanceError, balance){
-      money.totalCoins(function(totalError, totalCoins){
-        money.coinCount(function(coinError, coins) {
-          coins[coins.length - 1].last = true;
-          var length = coins.length - 1;
-          for (var i = length; i >= 0; i--){
-            if(i != length) {
-              coins[i].lastStr = ", ";            
-            }
-            var v = coins[i];
-            if(v.key < 1) {
-              v.key = (v.key * 100) + "c";
-            } else {
-              v.key = "$" + v.key;
-            }
+      money.coinCount(function(coinError, coins) {
+        if(coins.length > 0) {
+          coins[coins.length - 1].last = true;            
+        }
+        var length = coins.length - 1;
+        for (var i = length; i >= 0; i--){
+          if(i != length) {
+            coins[i].lastStr = ", ";            
           }
+          var v = coins[i];
+          if(v.key < 1) {
+            v.key = (v.key * 100) + "c";
+          } else {
+            v.key = "$" + v.key;
+          }
+        }
 
-          opts.locals = {
-            balance: balance || balanceError,
-            total: totalCoins || totalError,
-            coins: coins || {}
-          };
-          res.render('index.hbs', opts);        
-        });
+        opts.locals = {
+          balance: balance || balanceError,
+          coins: coins || {}
+        };
+        res.render('index.hbs', opts);        
       });
     });
   };
