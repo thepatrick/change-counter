@@ -56,7 +56,18 @@ app.configure('production', function(){
 
 // Providers
 auth = new Auth(authServer, authApp, authSecret);
-money = new Data("localhost", 5984, 'money');
+
+var opts = {
+  host: process.env.COUCH_SERVER,
+  port: process.env.COUCH_PORT,
+  secure: !!process.env.COUCH_SECURE
+};
+if(process.env.COUCH_USER || process.env.COUCH_PASSWORD) {
+  opts.auth = {};
+  opts.auth.username = process.env.COUCH_USER;
+  opts.auth.password = process.env.COUCH_PASSWORD;
+}
+money = new Data(opts, process.env.COUCH_DB);
 
 // Routes
 app.get('/completeLogin', actions.completeLogin(auth));

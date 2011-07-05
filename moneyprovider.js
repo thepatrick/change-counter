@@ -2,11 +2,10 @@
 var cradle = require('cradle'),
     util = require('util');
 
-var DataProvider = function(host, port, db) {
-  this.connection= new cradle.Connection(host, port, {
-    cache: true,
-    raw: false
-  });
+var DataProvider = function(opts, db) {
+  opts.cache = true;
+  opts.raw = false
+  this.connection= new cradle.Connection(opts);
   this.db = this.connection.database(db);
   this.db.save('_design/money', {
     coinCount: {
